@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using StringCalculatorClasses;
+using System;
 
 namespace StringCalculatorTests
 {
@@ -31,6 +32,11 @@ namespace StringCalculatorTests
         {
             int result = _stringCalculator.Add("1,2");
             Assert.AreEqual(3, result);
+        }
+        [Test]
+        public void Add_sum3numbers_ArgumentException()
+        {
+            Assert.That(() => _stringCalculator.Add("1,2,3"), Throws.TypeOf<ArgumentException>());
         }
     }
 }
