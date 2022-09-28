@@ -38,5 +38,10 @@ namespace StringCalculatorTests
         {
             Assert.That(() => _stringCalculator.Add("1,2,3"), Throws.TypeOf<ArgumentException>());
         }
+        [Test]
+        public void Add_sum1char_FormatException()
+        {
+            Assert.That(() => _stringCalculator.Add("&"), Throws.TypeOf<FormatException>());
+        }
     }
 }
