@@ -8,6 +8,7 @@ namespace StringCalculatorClasses
     public class StringCalculator
     {
         static private int addInvokeCount;
+        public event Action<string, int> AddOccured;
         public StringCalculator()
         {
             addInvokeCount = 0;
