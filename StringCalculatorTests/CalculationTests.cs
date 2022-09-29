@@ -76,5 +76,11 @@ namespace StringCalculatorTests
         {
             Assert.That(() => _stringCalculator.Add("1,2,-3,5,7"), Throws.TypeOf<NegativeNumberException>());
         }
+        [Test]
+        public void Add_multipleNegativeNumber_NegativeNumberException()
+        {
+            Assert.That(() => _stringCalculator.Add("1,2,-3,-5,7"), Throws.TypeOf<NegativeNumberException>().With.Message.EqualTo("negatives not allowed: -3 -5"));
+        }
+
     }
 }
