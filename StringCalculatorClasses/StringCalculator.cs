@@ -27,13 +27,19 @@ namespace StringCalculatorClasses
             Regex regex = new Regex(delimiter + @"|\n");
             List<int> additions = regex.Split(numbers).
                 Select(Int32.Parse).ToList<int>();
-            
+
+            List<int> negativeNumbers = new List<int>();
             foreach (int number in additions)
             {
                 if (number < 0) {
-                    throw new NegativeNumberException("negatives not allowed");
+                    negativeNumbers.Add(number);
+                    continue;
                 }
                 summResult += number;
+            }
+            if (negativeNumbers.Count > 0)
+            {
+                throw new NegativeNumberException("negatives not allowed: " + String.Join(" ", negativeNumbers));
             }
 
             return summResult;
