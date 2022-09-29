@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace StringCalculatorClasses
 {
@@ -21,6 +23,13 @@ namespace StringCalculatorClasses
                         throw new FormatException();
                     }
                     break;
+                case 3:
+                    List<int> additions = numbers.Split(',').
+                        Select(Int32.Parse).ToList<int>();
+                    summResult = additions.Sum();
+                    break;
+                default:
+                    throw new ArgumentException("Invalid input!");
             }
             return summResult;
         }
