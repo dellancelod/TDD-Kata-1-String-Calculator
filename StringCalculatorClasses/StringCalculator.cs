@@ -27,7 +27,14 @@ namespace StringCalculatorClasses
             Regex regex = new Regex(delimiter + @"|\n");
             List<int> additions = regex.Split(numbers).
                 Select(Int32.Parse).ToList<int>();
-            summResult = additions.Sum();
+            
+            foreach (int number in additions)
+            {
+                if (number < 0) {
+                    throw new NegativeNumberException("negatives not allowed");
+                }
+                summResult += number;
+            }
 
             return summResult;
         }
