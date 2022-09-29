@@ -15,7 +15,8 @@ namespace StringCalculatorClasses
                 return 0;
             }
 
-            List<int> additions = numbers.Split(',').Select(Int32.Parse).ToList<int>();
+            List<int> additions = numbers.Split(',').
+                Select(Int32.Parse).ToList<int>();
             summResult = additions.Sum();
 
             return summResult;
