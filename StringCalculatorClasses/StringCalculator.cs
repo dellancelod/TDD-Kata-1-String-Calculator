@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace StringCalculatorClasses
 {
@@ -15,7 +16,8 @@ namespace StringCalculatorClasses
                 return 0;
             }
 
-            List<int> additions = numbers.Split(',').
+            Regex regex = new Regex(@",|\n");
+            List<int> additions = regex.Split(numbers).
                 Select(Int32.Parse).ToList<int>();
             summResult = additions.Sum();
 
