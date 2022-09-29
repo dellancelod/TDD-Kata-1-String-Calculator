@@ -10,13 +10,21 @@ namespace StringCalculatorClasses
         public int Add(string numbers)
         {
             int summResult = 0;
+            char delimiter = ',';
 
             if (numbers.Length == 0)
             {
                 return 0;
             }
 
-            Regex regex = new Regex(@",|\n");
+            if (numbers.StartsWith("//"))
+            {
+                delimiter = numbers[2];
+                numbers = numbers.Remove(0, 4);
+                Console.WriteLine(numbers);
+            }
+
+            Regex regex = new Regex(delimiter + @"|\n");
             List<int> additions = regex.Split(numbers).
                 Select(Int32.Parse).ToList<int>();
             summResult = additions.Sum();
