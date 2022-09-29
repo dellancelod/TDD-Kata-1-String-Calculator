@@ -54,5 +54,12 @@ namespace StringCalculatorTests
         {
             Assert.That(() => _stringCalculator.Add(","), Throws.TypeOf<FormatException>());
         }
+        [Test]
+        public void Add_newLineSymbolInsteadOfComa_18()
+        {
+            int result = _stringCalculator.Add("1,2\n3\n5,7");
+            Assert.AreEqual(18, result);
+        }
+
     }
 }
