@@ -8,6 +8,10 @@ namespace StringCalculatorClasses
     public class StringCalculator
     {
         static private int addInvokeCount;
+        public StringCalculator()
+        {
+            addInvokeCount = 0;
+        }
         public int Add(string numbers)
         {
             addInvokeCount += 1;
