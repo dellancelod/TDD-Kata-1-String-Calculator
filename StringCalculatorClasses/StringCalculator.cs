@@ -7,8 +7,11 @@ namespace StringCalculatorClasses
 {
     public class StringCalculator
     {
+        static private int addInvokeCount;
         public int Add(string numbers)
         {
+            addInvokeCount += 1;
+
             int summResult = 0;
             char delimiter = ',';
 
@@ -21,7 +24,6 @@ namespace StringCalculatorClasses
             {
                 delimiter = numbers[2];
                 numbers = numbers.Remove(0, 4);
-                Console.WriteLine(numbers);
             }
 
             Regex regex = new Regex(delimiter + @"|\n");
