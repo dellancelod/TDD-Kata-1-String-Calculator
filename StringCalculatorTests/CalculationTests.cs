@@ -71,5 +71,10 @@ namespace StringCalculatorTests
             int result = _stringCalculator.Add("//;\n1;2;3;5;7");
             Assert.AreEqual(18, result);
         }
+        [Test]
+        public void Add_negativeNumber_NegativeNumberException()
+        {
+            Assert.That(() => _stringCalculator.Add("1,2,-3,5,7"), Throws.TypeOf<NegativeNumberException>());
+        }
     }
 }
