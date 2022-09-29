@@ -65,6 +65,11 @@ namespace StringCalculatorTests
         {
             Assert.That(() => _stringCalculator.Add("1,2,\n3\n5,7"), Throws.TypeOf<FormatException>());
         }
-
+        [Test]
+        public void Add_delimiterPick_18()
+        {
+            int result = _stringCalculator.Add("//;\n1;2;3;5;7");
+            Assert.AreEqual(18, result);
+        }
     }
 }
