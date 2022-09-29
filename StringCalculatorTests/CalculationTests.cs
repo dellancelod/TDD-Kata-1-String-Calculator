@@ -60,6 +60,11 @@ namespace StringCalculatorTests
             int result = _stringCalculator.Add("1,2\n3\n5,7");
             Assert.AreEqual(18, result);
         }
+        [Test]
+        public void Add_newLineAndComaSymbols_FormatException()
+        {
+            Assert.That(() => _stringCalculator.Add("1,2,\n3\n5,7"), Throws.TypeOf<FormatException>());
+        }
 
     }
 }
