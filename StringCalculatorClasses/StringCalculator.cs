@@ -50,5 +50,9 @@ namespace StringCalculatorClasses
 
             return summResult;
         }
+        public int GetCalledCount()
+        {
+            return addInvokeCount;
+        }
     }
 }
