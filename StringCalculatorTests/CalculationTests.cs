@@ -34,14 +34,25 @@ namespace StringCalculatorTests
             Assert.AreEqual(3, result);
         }
         [Test]
-        public void Add_sum3numbers_ArgumentException()
+        public void Add_sum5numbers_18()
         {
-            Assert.That(() => _stringCalculator.Add("1,2,3"), Throws.TypeOf<ArgumentException>());
+            int result = _stringCalculator.Add("1,2,3,5,7");
+            Assert.AreEqual(18, result);
         }
         [Test]
         public void Add_sum1char_FormatException()
         {
             Assert.That(() => _stringCalculator.Add("&"), Throws.TypeOf<FormatException>());
+        }
+        [Test]
+        public void Add_sumOfChars_FormatException()
+        {
+            Assert.That(() => _stringCalculator.Add("&,#,a"), Throws.TypeOf<FormatException>());
+        }
+        [Test]
+        public void Add_coma_FormatException()
+        {
+            Assert.That(() => _stringCalculator.Add(","), Throws.TypeOf<FormatException>());
         }
     }
 }
