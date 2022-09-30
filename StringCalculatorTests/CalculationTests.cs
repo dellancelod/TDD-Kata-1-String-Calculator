@@ -87,6 +87,12 @@ namespace StringCalculatorTests
             int result = _stringCalculator.Add("2,1001");
             Assert.AreEqual(2, result);
         }
+        [Test]
+        public void Add_delimiterAnyLenght_18()
+        {
+            int result = _stringCalculator.Add("//[***]\n1***2***3***5***7");
+            Assert.AreEqual(18, result);
+        }
 
     }
 }
