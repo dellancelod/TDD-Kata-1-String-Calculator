@@ -32,7 +32,7 @@ namespace StringCalculatorClasses
             {
                 if (numbers[2] == '[')
                 {
-                    Regex regexDelimiterPattern = new Regex(@"\[.*]");
+                    Regex regexDelimiterPattern = new Regex(@"\[.*?]");
 
                     MatchCollection matchedDelimeters = regexDelimiterPattern.Matches(numbers);
 
@@ -52,7 +52,6 @@ namespace StringCalculatorClasses
 
             for (int i = 0; i < delimeters.Count; i++)
             {
-                Console.WriteLine(delimeters[i]);
                 numbers = numbers.Replace(delimeters[i], ",");
             }
 
