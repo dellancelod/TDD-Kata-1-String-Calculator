@@ -16,6 +16,7 @@ namespace StringCalculatorClasses
         public int Add(string numbers)
         {
             addInvokeCount += 1;
+            AddOccured?.Invoke(numbers, addInvokeCount);
 
             int summResult = 0;
             char delimiter = ',';
