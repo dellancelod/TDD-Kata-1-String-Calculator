@@ -19,22 +19,46 @@ namespace StringCalculatorClasses
             AddOccured?.Invoke(numbers, addInvokeCount);
 
             int summResult = 0;
-            char delimiter = ',';
+            List<string> delimeters = new List<string>();
+            delimeters.Add("\n");
 
             if (numbers.Length == 0)
             {
                 return 0;
             }
 
+            //Check for delimiter
             if (numbers.StartsWith("//"))
             {
-                delimiter = numbers[2];
-                numbers = numbers.Remove(0, 4);
+                if (numbers[2] == '[')
+                {
+                    Regex regexDelimiterPattern = new Regex(@"\[.*]");
+
+                    MatchCollection matchedDelimeters = regexDelimiterPattern.Matches(numbers);
+
+                    foreach (Match match in matchedDelimeters)
+                    {
+                        delimeters.Add(Regex.Replace(match.Value, @"\[?\.*\]?", ""));
+                    }
+                }
+                else
+                {
+                    delimeters.Add(numbers[2].ToString());
+                }
+
+                //Remove delimiter command including new line symbol
+                numbers = Regex.Replace(numbers, @".*\n", "");
             }
 
-            Regex regex = new Regex(delimiter + @"|\n");
-            List<int> additions = regex.Split(numbers).
+            for (int i = 0; i < delimeters.Count; i++)
+            {
+                Console.WriteLine(delimeters[i]);
+                numbers = numbers.Replace(delimeters[i], ",");
+            }
+
+            List<int> additions = numbers.Split(',').
                 Select(Int32.Parse).ToList<int>();
+
 
             List<int> negativeNumbers = new List<int>();
             foreach (int number in additions)
