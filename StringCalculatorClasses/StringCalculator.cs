@@ -19,15 +19,48 @@ namespace StringCalculatorClasses
             AddOccured?.Invoke(numbers, addInvokeCount);
 
             int summResult = 0;
-            List<string> delimeters = new List<string>();
-            delimeters.Add("\n");
 
             if (numbers.Length == 0)
             {
                 return 0;
             }
 
-            //Check for delimiter
+            numbers = CheckForDelimeters(numbers);
+
+            List<int> additions = numbers.Split(',').
+                Select(Int32.Parse).ToList<int>();
+
+
+            List<int> negativeNumbers = new List<int>();
+            foreach (int number in additions)
+            {
+                if (number < 0) {
+                    negativeNumbers.Add(number);
+                    continue;
+                }
+                if (number <= 1000)
+                {
+                    summResult += number;
+                }
+            }
+            if (negativeNumbers.Count > 0)
+            {
+                throw new NegativeNumberException("negatives not allowed: " + String.Join(" ", negativeNumbers));
+            }
+
+            return summResult;
+        }
+
+        public int GetCalledCount()
+        {
+            return addInvokeCount;
+        }
+        public string CheckForDelimeters(string numbers)
+        {
+
+            List<string> delimeters = new List<string>();
+            delimeters.Add("\n");
+
             if (numbers.StartsWith("//"))
             {
                 if (numbers[2] == '[')
@@ -55,32 +88,7 @@ namespace StringCalculatorClasses
                 numbers = numbers.Replace(delimeters[i], ",");
             }
 
-            List<int> additions = numbers.Split(',').
-                Select(Int32.Parse).ToList<int>();
-
-
-            List<int> negativeNumbers = new List<int>();
-            foreach (int number in additions)
-            {
-                if (number < 0) {
-                    negativeNumbers.Add(number);
-                    continue;
-                }
-                if (number <= 1000)
-                {
-                    summResult += number;
-                }
-            }
-            if (negativeNumbers.Count > 0)
-            {
-                throw new NegativeNumberException("negatives not allowed: " + String.Join(" ", negativeNumbers));
-            }
-
-            return summResult;
-        }
-        public int GetCalledCount()
-        {
-            return addInvokeCount;
+            return numbers;
         }
     }
 }
