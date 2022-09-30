@@ -43,7 +43,10 @@ namespace StringCalculatorClasses
                     negativeNumbers.Add(number);
                     continue;
                 }
-                summResult += number;
+                if (number <= 1000)
+                {
+                    summResult += number;
+                }
             }
             if (negativeNumbers.Count > 0)
             {
