@@ -81,6 +81,12 @@ namespace StringCalculatorTests
         {
             Assert.That(() => _stringCalculator.Add("1,2,-3,-5,7"), Throws.TypeOf<NegativeNumberException>().With.Message.EqualTo("negatives not allowed: -3 -5"));
         }
+        [Test]
+        public void Add_ignoreNumbersGreaterThan1000_2()
+        {
+            int result = _stringCalculator.Add("2,1001");
+            Assert.AreEqual(2, result);
+        }
 
     }
 }
